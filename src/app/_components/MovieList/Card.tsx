@@ -1,8 +1,18 @@
 'use client';
 import styled from 'styled-components';
 
-export default function Card({ children }: { children: React.ReactNode }) {
-  return <Container>{children}</Container>;
+interface CardProps {
+  children: React.ReactNode;
+  onMouseOver: () => void;
+  onMouseOut: () => void;
+}
+
+export default function Card({ children, onMouseOver, onMouseOut }: CardProps) {
+  return (
+    <Container onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+      {children}
+    </Container>
+  );
 }
 
 const Container = styled.div`
@@ -12,6 +22,7 @@ const Container = styled.div`
   border-radius: 8px;
   overflow: hidden;
   background-color: #d7d7d7;
+  cursor: pointer;
 
   //   시간되면 반응형으로 개선하기 + 이미지마다 주소도 다르게 설정
   //   @media screen and (min-width: 1200px) and (max-width: 1920px) {
